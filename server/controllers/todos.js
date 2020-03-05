@@ -60,9 +60,7 @@ module.exports = {
         }
 
         return todo
-          .update({
-            title: req.body.title || todo.title
-          })
+          .update(req.body, { fields: Object.keys(req.body) })
           .then(() => res.status(200).send(todo))
           .catch(error => res.status(400).send(error));
       })
